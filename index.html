@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#060a0f">
+  <title>Apple Sum</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/board.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <main class="game" aria-label="Apple Sum game">
+    <header class="hero">
+      <h1 class="logo" aria-label="Apple Sum">
+        <span class="logo-letter red">A</span><span class="logo-letter orange">P</span><span class="logo-letter yellow">P</span><span class="logo-letter green">L</span><span class="logo-letter lime">E</span>
+        <span class="logo-gap" aria-hidden="true"></span>
+        <span class="logo-letter cyan">S</span><span class="logo-letter blue">U</span><span class="logo-letter purple">M</span>
+      </h1>
+      <button class="sound-button icon-button" id="soundBtn" type="button" aria-pressed="true" aria-label="소리 켜짐">🔊</button>
+    </header>
+
+    <section class="top-hud" aria-label="게임 정보">
+      <div class="hud-stat">
+        <span class="label">SCORE</span>
+        <span class="value" id="score">0</span>
+      </div>
+      <div class="hud-stat right">
+        <span class="label">TIME</span>
+        <span class="value" id="timer">2:00</span>
+      </div>
+    </section>
+
+    <div class="time-track" aria-hidden="true"><span id="timeProgress"></span></div>
+
+    <section class="play-status" aria-label="현재 선택 정보">
+      <div class="combo-badge" id="comboBadge" hidden></div>
+      <div class="sum-pill">SUM: <span id="target">10</span></div>
+      <div class="selection-pill">선택 <span id="sum" class="value">0</span></div>
+    </section>
+
+    <section class="board-shell" id="boardShell">
+      <div class="grid-wrap" id="gridWrap">
+        <div class="grid" id="grid"></div>
+        <div class="select-rect" id="selectRect"></div>
+        <canvas id="trailCanvas"></canvas>
+      </div>
+    </section>
+
+    <div class="message" id="message">목표 합이 되도록 과일을 드래그하세요.</div>
+
+    <section class="bottom-panel" aria-label="게임 조작">
+      <div class="goal-row">
+        <strong>SUM TARGET: <span id="targetFooter">10</span></strong>
+        <strong>CLEAR: <span id="goalProgressLabel">0/80</span></strong>
+      </div>
+      <div class="goal-track" aria-hidden="true"><span id="goalProgress"></span></div>
+      <div class="controls">
+        <button class="hint-button" id="hintBtn" type="button">HINT</button>
+        <button class="new-button" id="newBtn" type="button">READY</button>
+        <button class="shuffle-button" id="shuffleBtn" type="button">SHUFFLE</button>
+      </div>
+      <div class="utility-stats" aria-hidden="true">
+        <span id="numberRange">1-9</span>
+        <span class="value difficulty normal" id="difficulty">보통</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="fx-layer" id="fxLayer"></div>
+
+  <div class="countdown" id="countdown" aria-hidden="true">
+    <div class="count-inner">
+      <div class="count-number" id="countNumber">10</div>
+    </div>
+  </div>
+
+  <section class="overlay" id="overlay">
+    <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+      <div class="overlay-orbs"></div>
+      <div class="emoji" id="overlayEmoji">🍎</div>
+      <h2 id="overlayTitle">APPLE SUM</h2>
+      <p id="overlayText">목표 합을 맞춰 과일을 지워보세요.<br>힌트로 가능한 조합을 확인할 수 있습니다.</p>
+      <strong id="finalScore" hidden>0개</strong>
+      <ol class="ranking" id="rankingList" hidden></ol>
+      <button id="startBtn" type="button">게임 시작</button>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
